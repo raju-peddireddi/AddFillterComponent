@@ -1,0 +1,352 @@
+[
+    {
+      "value": "importerDetails",
+      "label": "Importer",
+      "subFilter": true,
+      "level" : "job",
+      "subFilterValues": [
+        {
+          "parentfield": "Importer",
+          "label": "Name",
+          "value": "customerName",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "Importer",
+          "label": "Branch SI.No.",
+          "value": "customerBranch",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "Importer",
+          "label": "ID",
+          "value": "customerId",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "Importer",
+          "label": "IEC",
+          "value": "customerIec",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "Importer",
+          "label": "AD Code",
+          "value": "customerAdCode",
+          "filterType": "textField",
+          "level" : "job"
+        }
+      ]
+    },
+    {
+      "value": "supplierDetails",
+      "label": "Shipper",
+      "subFilter": true,
+      "level" : "job",
+      "subFilterValues": [
+        {
+          "parentfield": "Shipper",
+          "label": "Name",
+          "value": "supplierName",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "Shipper",
+          "label": "Branch SI.No.",
+          "value": "supplierBranch",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "Shipper",
+          "label": "ID",
+          "value": "supplierId",
+          "filterType": "textField",
+          "level" : "job"
+        }
+      ]
+    },
+    {
+      "value": "beSbDate",
+      "label": "Be Date",
+      "filterType": "date",
+      "level" : "job"
+    },
+    {
+      "value": "jobCreationDate",
+      "label": "Job Created On",
+      "filterType": "date",
+      "level" : "job"
+    },
+    {
+      "value": "mot",
+      "label": "Mode of Transport",
+      "filterType": "dropDown",
+      "level" : "job"
+    },
+    {
+      "value": "cbDetails",
+      "label": "CB Details",
+      "subFilter": true,
+      "level" : "job",
+      "subFilterValues": [
+        {
+          "parentfield": "CB Details",
+          "label": "CB Branch",
+          "value": "cbBranch",
+          "filterType": "dropDown",
+          "level" : "job"
+        },
+        {
+          "parentfield": "CB Details",
+          "label": "CB City",
+          "value": "cbCity",
+          "filterType": "dropDown",
+          "level" : "job"
+        }
+      ]
+    },
+    {
+      "value": "igmDetails",
+      "label": "IGM Details",
+      "level" : "job",
+      "subFilter": true,
+      "subFilterValues": [
+        {
+          "parentfield": "IGM Details",
+          "label": "Container No.",
+          "value": "containerNo",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "IGM Details",
+          "label": "IGM No.",
+          "value": "igmNo",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "IGM Details",
+          "label": "MBL/MAWB No.",
+          "value": "mawbMblNo",
+          "filterType": "textField",
+          "level" : "job"
+        },
+        {
+          "parentfield": "IGM Details",
+          "label": "Marks and No`s",
+          "value": "marksAndNos",
+          "filterType": "textField",
+          "level" : "job"
+        }
+      ]
+    },
+    {
+      "value": "jobDetails",
+      "label": "Shipment Details",
+      "subFilter": true,
+      "level" : "job",
+      "subFilterValues": [
+        {
+          "parentfield": "Shipment Details",
+          "label": "Port of Origin",
+          "value": "portOfOrigin",
+          "filterType": "dropDown",
+          "level" : "job"
+        },
+        {
+          "parentfield": "Shipment Details",
+          "label": "Port of Shipment",
+          "value": "portOfShipment",
+          "filterType": "dropDown",
+          "level" : "job"
+        }
+      ]
+    },
+    {
+      "value": "invoiceDetails",
+      "label": "Invoice Details",
+      "level" : "invoice",
+      "subFilter": true,
+      "subFilterValues": [
+        {
+          "parentfield": "Invoice Details",
+          "label": "Supplier Details",
+          "value": "supplierDetails",
+          "subChildFilter": true,
+          "level" : "invoice",
+          "subChildFilterValues": [
+            {
+              "subParentfield": "Supplier Details",
+              "label": "Name",
+              "value": "supplierName",
+              "filterType": "textField",
+              "level" : "invoice"
+            },
+            {
+              "subParentfield": "Supplier Details",
+              "label": "Branch SI.No.",
+              "value": "supplierBranch",
+              "filterType": "textField",
+              "level" : "invoice"
+            },
+            {
+              "subParentfield": "Supplier Details",
+              "label": "ID",
+              "value": "supplierId",
+              "filterType": "textField",
+              "level" : "invoice"
+            }
+          ]
+        },
+        {
+          "parentfield": "Invoice Details",
+          "label": "SVB Reference No.",
+          "value": "svbRefNo",
+          "filterType": "textField",
+          "level" : "invoice"
+        },
+        {
+          "parentfield": "Invoice Details",
+          "label": "Seller Details",
+          "value": "sellerDetails",
+          "subChildFilter": true,
+          "level" : "invoice",
+          "subChildFilterValues": [
+            {
+              "subParentfield": "Seller Details",
+              "label": "Name",
+              "value": "sellerName",
+              "filterType": "textField",
+              "level" : "invoice"
+            },
+            {
+              "subParentfield": "Seller Details",
+              "label": "ID",
+              "value": "sellerId",
+              "filterType": "textField",
+              "level" : "invoice"
+            }
+          ]
+        },
+        {
+          "parentfield": "Invoice Details",
+          "label": "Broker Details",
+          "value": "brokerDetails",
+          "subChildFilter": true,
+          "level" : "invoice",
+          "subChildFilterValues": [
+            {
+              "subParentfield": "Broker Details",
+              "label": "Name",
+              "value": "brokerName",
+              "filterType": "textField",
+              "level" : "invoice"
+            },
+            {
+              "subParentfield": "Broker Details",
+              "label": "ID",
+              "value": "brokerId",
+              "filterType": "textField",
+              "level" : "invoice"
+            }
+          ]
+        },
+        {
+          "parentfield": "Invoice Details",
+          "label": "Third Party Details",
+          "value": "ThirdPartyDetails",
+          "level" : "invoice",
+          "subChildFilter": true,
+          "subChildFilterValues": [
+            {
+              "subParentfield": "Third Party Details",
+              "label": "Name",
+              "value": "thirdPartyName",
+              "filterType": "textField",
+              "level" : "invoice"
+            },
+            {
+              "subParentfield": "Third Party Details",
+              "label": "ID",
+              "value": "thirdPartyId",
+              "filterType": "textField",
+              "level" : "invoice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "value": "itemDetails",
+      "label": "Item Details",
+      "subFilter": true,
+      "level" : "item",
+      "subFilterValues": [
+        {
+          "parentfield": "Item Details",
+          "label": "Part Code",
+          "value": "partCode",
+          "filterType": "textField",
+          "level" : "item"
+        },
+        {
+          "parentfield": "Item Details",
+          "label": "Description",
+          "value": "description",
+          "filterType": "textField",
+          "level" : "item"
+        },
+        {
+          "parentfield": "Item Details",
+          "label": "HSN",
+          "value": "hsn",
+          "filterType": "textField",
+          "level" : "item"
+        },
+        {
+          "parentfield": "Item Details",
+          "label": "License No.",
+          "value": "licenseNo",
+          "filterType": "textField",
+          "level" : "item"
+        }
+      ]
+    },
+    {
+      "label": "Bond No.",
+      "value": "bondNo",
+      "level" : "job",
+      "filterType": "textField"
+    },
+    {
+      "label": "Custom House Code",
+      "value": "customsHouseCode",
+      "level" : "job",
+      "filterType": "dropDown"
+    },
+    {
+      "label": "Created By",
+      "value": "createdBy",
+      "level": "job",
+      "filterType": "textField"
+    },
+    {
+      "label": "Type of BE",
+      "value": "beType",
+      "level" : "job",
+      "filterType": "dropDown"
+    },
+    {
+      "value": "status",
+      "label": "Job Status",
+      "level" : "job",
+      "filterType": "dropDown"
+    }
+  ]

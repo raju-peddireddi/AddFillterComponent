@@ -1,0 +1,111 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.heading{ 
+    color: #ffffff;
+    line-height: 18px;
+    font-size: 14px;
+    width: 286px;
+    text-align: left;
+    top: 10px
+}
+
+
+.search-list-container{ 
+    list-style-type: none;
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+ 
+}
+.results{
+    font-family: "Inter";
+    color: #ffffff;
+    text-align: left;
+    padding-left: 12px;
+    top: 0px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 0;
+}
+
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 16px;
+    padding-left: 16px;
+    height:56px;
+    border: '2px solid red'
+}
+.apply-btn{
+    padding: 4px 8px;
+    width: 50px;
+    height: 24px;
+    background: #242C40;
+    border-radius: 4px;
+    font-size: 12px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.failure-card{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 302px;
+    height: 247px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.no-result{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 16px;
+color: white;
+}
+.failure-msg{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 20px;
+/* or 167% */
+text-align: center;
+
+/* Sentinel V2/Grey/grey 300 */
+
+color: #CDCFD3;
+
+}
+.error-img{
+    height: 66.602054595947266px;
+width: 78.16188430786133px;
+
+
+
+}
+.alert-msg{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 18px;
+color: #FFFFFF;
+}

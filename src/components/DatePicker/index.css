@@ -1,0 +1,38 @@
+.date-text{
+    font-size: 30px;
+    
+}
+
+.plugin-message{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 54px;
+    line-height: 18px;
+    color: red;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.from-data-and-time{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #9497A1;
+    margin-top: -0.2%;
+}
+.span{
+    left: 0px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 16px;
+color: #FFFFFF;
+margin-top: 12px;
+}
+.auto{
+    width:55px;
+    margin-top: -8%
+}

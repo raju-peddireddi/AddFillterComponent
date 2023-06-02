@@ -1,0 +1,17 @@
+.date-field-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:'413px';
+    padding-left: 16px;
+    padding-right: 16px  ;
+}
+.select-date{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #9497A1;
+    margin-top: 24px;
+}
