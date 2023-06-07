@@ -19,8 +19,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    color: #9497A1;
-    margin-top: -0.2%;
+    color: #9497A1
 }
 .span{
     left: 0px;
@@ -30,9 +29,38 @@ font-weight: 600;
 font-size: 12px;
 line-height: 16px;
 color: #FFFFFF;
-margin-top: 12px;
+
 }
 .auto{
     width:55px;
-    margin-top: -8%
+    margin-top: -3%;
+
 }
+::-webKit-scrollbar {
+    width: 6px;
+    height: 21px
+}
+
+::-webkit-scrollbar-thumb {
+    background:  #32394C;
+    height: 154px;
+    width: 185px;
+    border-radius: 22px;
+}
+
+::-webkit-scrollbar-track {
+    left: 800px;
+    height: 723px;
+    background:  #050E25
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    background: #075779;
+    height: 185px
+}
+
+::-webkit-scrollbar-track:horizontal {
+    background: #999;
+    height: 723px
+}   
+

@@ -20,21 +20,23 @@ const Minute = [
   { value:"49" }, { value:"50" }, { value:"51" }, { value:"52" }, { value:"53" }, { value:"54" }, { value:"55" }, { value:"56" },
   { value:"57" }, { value:"58" }, { value:"59" }, { value:"60" },]
 const AmPm=[
-  {value:"AM"}, {value:"PM"}]
+  {value:"am"}, {value:"pm"}]
 const useStyles = makeStyles({
   datePicker:{
     background: '#050E25',
+
     width: '648px',
     height: '521px',
     padding: 0,
+    
     '& rmdp-ep-arrow[direction=top]':{
  
     },
-    '& .css-n3fon5-MuiGrid-root>.MuiGrid-item':{
-      paddingLeft: '8px',
-      display: 'flex',
-      alignItems: 'center'
-    },
+    // '& .css-n3fon5-MuiGrid-root>.MuiGrid-item':{
+    //   paddingLeft: '8px',
+    //   display: 'flex',
+    //   alignItems: 'center'
+    // },
     '& .rmdp-calender':{
         padding: '0px'
     },
@@ -46,7 +48,7 @@ const useStyles = makeStyles({
     },
     '& .rmdp-calendar':{
       width: '100%',
-
+      height: ' 261px'
     }
    ,
    '& .rmdp-day-picker':{
@@ -166,17 +168,23 @@ const useStyles = makeStyles({
       color: 'white !important',
       lineHeight: '32px',
       '&::-webkit-scrollbar': {
-        width: '10px',
-      },
-      '&::-webkit-scrollbar-track': {
-        background: '#f1f1f1',
+        width: '5px',
+        height: "5px",
+        backgroundColor: "#e6e6e6",
       },
       '&::-webkit-scrollbar-thumb': {
-        background: '#888',
+        backgroundColor: "rgba(7, 87, 121, 1)",
+        height: "154px",
+        borderRadius: '4px',
       },
-      '&::-webkit-scrollbar-thumb:hover': {
-        background: 'red',
+    },
+    customTextField:{
+      '& .MuiInput-underline:before': {
+        borderBottom: '1px solid #626776'
       },
+      '& .MuiInput-underline:hover:not(.Mui-disabled):before':{
+        borderBottom: '2px solid #626776'
+      }
     }
 })
   
@@ -193,18 +201,22 @@ function MyRangePickerFooter({startDate,endDate,
     getOptionLabel: (option) => option.value,
   };
   const classes = useStyles()
+  const inputStyle ={
+    color: 'red'
+  }
   return (
     <div style={{padding:"1rem",textAlign: "left"}}>
-      <Grid container spacing={7} sx={{display: 'flex', justifyContent: 'space-between', width: '648px'}}>
-        <Grid item style={{display: 'flex', flexDirection: 'column'}}>
+      <Grid container sx={{display: 'flex', justifyContent: 'space-between', marginTop: '2rem'}}>
+        <Grid item container  sx={{display:'flex', alignItems: 'center', width: '296px'}}>
           <p className='from-data-and-time'>From Date & Time</p>
-          <Grid container spacing={1} sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width:'296px', height: '36px'}}>
+          <Grid  sx={{display: 'flex', justifyContent:'space-between', alignItems: 'center', width: '296px'}}>
             <Grid item>
               <span className='span'>{startDate}</span>
             </Grid>
-            <Grid item sx={{display: 'flex', flexDirection:'column'}}>
+            <Grid item>
               {/* <TextField variant='standard' style={{width: "6rem"}} label="Start Time" type="time" value={time.startTime} onChange={(e)=>{handleChange(e,"startTime")}} /> */}
               <Autocomplete
+                disableClearable
                 className='auto'
                 classes = {{paper:classes.optionContainer}}
                 {...defaultProps}
@@ -215,13 +227,17 @@ function MyRangePickerFooter({startDate,endDate,
                   setStartTime(prevSelection => ({...prevSelection, h: newValue}))
                   event.stopPropagation();
                 }}
+               
                 renderInput={(params) => (
-                  <TextField {...params} label="hour" variant="standard"/>
+                  <TextField {...params} label="hour" variant="standard" sx={{marginTop: '-15px'}}
+                  className={classes.customTextField}
+                  />
                 )}
               />
             </Grid>
             <Grid item>
               <Autocomplete
+                disableClearable
                 {...defaultProps}
                 className='auto'
                 id="Start-Minute"
@@ -233,12 +249,13 @@ function MyRangePickerFooter({startDate,endDate,
                   event.stopPropagation();
                 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="min" variant="standard" />
+                  <TextField {...params} label="min" variant="standard" sx={{marginTop: '-15px'}}   className={classes.customTextField}/>
                 )}
               />
             </Grid>
             <Grid item>
               <Autocomplete
+                disableClearable
                 {...defaultProps}
                 className='auto'
                 id="Start-Time"
@@ -250,21 +267,22 @@ function MyRangePickerFooter({startDate,endDate,
                   event.stopPropagation();
                 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="Am/Pm" variant="standard"  />
+                  <TextField {...params} label="Am/Pm" variant="standard"  sx={{marginTop: '-15px'}}   className={classes.customTextField}/>
                 )}
               />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item >
+        <Grid container sx={{display:'flex', alignItems: 'center', width: '296px'}}>
           <p className='from-data-and-time'>To Date & Time</p>
-          <Grid container sx={{display:'flex', alignItems: 'center'}}>
+          <Grid  sx={{display:'flex', justifyContent: 'space-between',alignItems: 'center', width: '296px'}}>
             <Grid item>
               <span className='span'>{endDate}</span>
             </Grid>
             <Grid item >
             {/* <TextField variant='standard' style={{width: "6rem"}} label="End Time" type="time" value={time.endTime} onChange={(e)=>{handleChange(e,"endTime")}} /> */}
              <Autocomplete
+               disableClearable
                 className='auto'  classes = {{paper:classes.optionContainer}}
                 {...defaultProps}
                 id="end-Hour"
@@ -275,12 +293,13 @@ function MyRangePickerFooter({startDate,endDate,
                   event.stopPropagation();
                 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="hour" variant="standard" />
+                  <TextField {...params} label="hour" variant="standard" sx={{marginTop: '-15px'}}   className={classes.customTextField} />
                 )}
               />
             </Grid>
             <Grid item>
               <Autocomplete
+                disableClearable
                 {...defaultProps}   classes = {{paper:classes.optionContainer}}
                 className='auto'
                 id="end-Minute"
@@ -291,12 +310,13 @@ function MyRangePickerFooter({startDate,endDate,
                   event.stopPropagation();
                 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="min" variant="standard" />
+                  <TextField {...params} label="min" variant="standard"  sx={{marginTop: '-15px'}}   className={classes.customTextField}/>
                 )}
               />
             </Grid>
             <Grid item>
               <Autocomplete
+                disableClearable
                 {...defaultProps}
                 className='auto'   classes = {{paper:classes.optionContainer}}
                 id="end-Time"
@@ -307,7 +327,7 @@ function MyRangePickerFooter({startDate,endDate,
                   event.stopPropagation();
                 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="Am/Pm" variant="standard" />
+                  <TextField {...params} label="Am/Pm" variant="standard" sx={{marginTop: '-15px'}}   className={classes.customTextField}/>
                 )}
               /> 
             </Grid>
@@ -371,7 +391,7 @@ const DateRangePicker = ({handleSelect,handleCancel}) => {
           ]}
         
         >
-          <div style={{textAlign:"left", height:'56px'}}>
+        <div style={{ height:'56px', display: 'flex', justifyContent:'space-between', alignItems: 'center', paddingLeft: '16px', paddingRight: '16px'}}>
           <Button variant="text" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px",  textTransform: 'none', color: "#3874FF"}} 
           onClick={()=>{
             handleCancel(selection,setSelection)
@@ -395,10 +415,11 @@ const TextFieldWithDatePicker = () =>{
   const [open,setOpen]=useState(false)
   
   const handleSelect=(
-    startTime,endTimetime,
+    startTime,endTime,
     time,
     dates,selection,setSelection)=>{
-    let Stime = time.startTime?.split(":")
+    let Stime = startTime.h.value
+    console.log(Stime)
     let stime=new Date()
     if(Stime)
     stime.setHours(Number(Stime[0]),Number(Stime[1]))
@@ -413,7 +434,7 @@ const TextFieldWithDatePicker = () =>{
     if(time.startTime===null){
       let subSelection={...selection, startDate:dates[0]?sDate:selection.startDate,endDate:dates[1]?eDate:selection.endDate,}
       setSelection(subSelection)
-      setValue(`${subSelection.startDate} - ${subSelection.endDate}`)
+      setValue(`${subSelection.startDate}, ${startTime.h.value}:${startTime.min.value} ${startTime.time.value} - ${subSelection.endDate}, ${endTime.h.value}:${endTime.min.value} ${endTime.time.value}`)
       console.log(subSelection,"selection")
     }
     else if(stime.toLocaleTimeString()!=="Invalid Date" || etime.toLocaleTimeString()!=="Invalid Date"){

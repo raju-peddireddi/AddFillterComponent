@@ -38,17 +38,18 @@
     line-height: 16px;
     margin-bottom: 0;
 }
-
-
 .button-container{
+    height: 56px;
+    width: '100%';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 16px;
     padding-left: 16px;
-    height:56px;
-    border: '2px solid red'
+    padding-right: 16px;
 }
+
+
+
 .apply-btn{
     padding: 4px 8px;
     width: 50px;
