@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   listDataContainer:{
     marginTop: '4px',
     paddingLeft: 0,
-    marginLeft: '16px',
+    marginLeft: '13px',
     marginRight: '16px',
     maxHeight: "192px",
     overflowY: 'scroll',
@@ -36,6 +36,24 @@ const useStyles = makeStyles({
   }
   ,checkedTrue:{
     color: '#D9D9D9 !important'
+  },
+  checkbox: {
+    position: "relative",
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      left: "50%",
+      top: "42%",
+      transform: "translate(-50%, -50%) rotate(45deg)",
+      width: "5px",
+      height: "10px",
+      border: "solid white",
+      borderWidth: "0 3px 3px 0",
+      opacity: 0
+    },
+    "&.Mui-checked::after": {
+      opacity: 1
+    }
   }
 })
 
@@ -47,8 +65,9 @@ export default function SuccessView({listItems, handleAnyCheckboxClick}) {
   const [selectedItems, setSelectedItems] = useState(0);
   
    useEffect(() => {
-    setCheckedItems(listItems)
+      setCheckedItems(listItems)
    }, [listItems])
+
   const totalItemsSelected = (updatedItems) => {
     let count = updatedItems.filter(item =>  item.checked).length;
     setSelectedItems(count)
@@ -61,12 +80,12 @@ export default function SuccessView({listItems, handleAnyCheckboxClick}) {
         setSelectedItems(filteredList.length)
         setSelectAll(!selectAll)
         let isChecked = filteredList.some(each => each.checked === true)
-        handleAnyCheckboxClick(isChecked)
+        handleAnyCheckboxClick(isChecked, filteredList)
     }
     else{
       let filteredList = checkedItems.map(item => ({...item, checked: false}))
       let isChecked = filteredList.some(each => each.checked === true)
-        handleAnyCheckboxClick(isChecked)
+        handleAnyCheckboxClick(isChecked, filteredList)
       setCheckedItems(filteredList)
       setSelectedItems(0)
       setSelectAll(!selectAll)
@@ -88,7 +107,7 @@ export default function SuccessView({listItems, handleAnyCheckboxClick}) {
     let isChecked = updatedItems.some(each => each.checked === true)
     setCheckedItems(updatedItems)
     totalItemsSelected(updatedItems)
-    handleAnyCheckboxClick(isChecked)
+    handleAnyCheckboxClick(isChecked, updatedItems)
   };
   
   const classes = useStyles()
@@ -98,19 +117,21 @@ export default function SuccessView({listItems, handleAnyCheckboxClick}) {
         <div className='count-container'>
           <CheckBox  
            sx={{width: '16px', height: '16px'}}
-          // style={selectAll ? {color: 'red'} : {color: '#D9D9D9'}}
           className = {selectAll? classes.checkedTrue: classes.checkedFalse}
            onChange = {handleSelectAllItems}
-        indeterminate={true}      
+        indeterminate={true} 
+        id = "selectAll"     
               />
-          <p className="items-selected">Select All</p>
+          <label className="items-selected" htmlFor="selectAll">Select All</label>
         </div>
         <p className='items-selected'>{selectedItems} items selected</p>
       </div>
          <ul className={classes.listDataContainer} >
-            {checkedItems.map(each => <li className="list-item" key = {each.id}><CheckBox checked={each.checked} sx={{color: '#9497A1', width:'16px', height: '16px',  }} 
+            {checkedItems.map(each => <li className="list-item" key = {each.id} style = {each.checked ? {backgroundColor: '#242C40'}: null}><CheckBox id = {each.id} checked={each.checked} sx={{color: '#9497A1', width:'16px', height: '16px',  }} 
+              //style={{background: '#FFFFFF', width: '10px', height: '5px'}}
+              classes={{root: classes.checkbox}}
             onChange={() => handleCheckboxChange(each.id)}
-            /><p  className="list-content">{each.label}</p></li>)}
+            /><label  className="list-content" htmlFor={each.id}>{each.label}</label></li>)}
        </ul>
   </div>
   )}

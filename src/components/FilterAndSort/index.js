@@ -58,7 +58,7 @@ textAlign: 'start',
     height: "50px",
     gap:'10px',
     left: "calc(50% - 414px/2)",
-    backgroundColor: "#25cc51",
+    backgroundColor: "#00B196",
     '& .css-ptiqhd-MuiSvgIcon-root':{
       color : '#FFFFFF',
     }
@@ -103,20 +103,33 @@ const failureView = () => <Box sx={{width: '302px', height: '247px', display: 'f
   <p className='failure-msg'>We cannot find the item you are searching, may be enter the correct value</p>
 </Box>;
 export default function FilterAndSort(props) {
+  const [dateSlected, setDateSelected] = useState(false)
   const [isChecked, setCheckedStatus] = useState(false)
   const [searchValue, setSearchInput] = useState('')
   const [listOfResults, setSearchListItems] = useState(myArray)
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.success)
   const [open, setOpen] = useState(false)
+  const [checkedList, setCheckedList] = useState([])
   const classes = useStyles()
   const {data}= props
   useEffect(() => {
     setSearchListItems(myArray)
   }, [])
   const handleSearchInputChange = (searchInput) => {
+    
     setSearchInput(searchInput)
     let filteredResults = myArray.filter(item => item.label.toLowerCase().includes(searchValue.toLocaleLowerCase()))
-    setSearchListItems(filteredResults)
+    let checkedListIds = checkedList.filter(each => each.checked === true).map(each => each.id)
+    let finalList = filteredResults.map(each => {
+      if (checkedListIds.includes(each.id)){
+          return {...each, checked: true }
+      }
+      return each
+    })
+    console.log(checkedListIds, 'ids')
+    console.log(finalList, 'final')
+    setSearchListItems(finalList)
+
     
   }
  
@@ -136,12 +149,16 @@ export default function FilterAndSort(props) {
   setOpen(true)
  }
  
-  if (data.subFilterValues !== undefined){
-    
+ const handleAnyCheckboxClick = (status, newList) => {
+  setCheckedList(newList)
+  setCheckedStatus(status)
   }
+   const handleDateTimeSelected = (dateSelected) => {
+        setDateSelected(dateSelected)
+   }
 
   const renderAllViews = () => {
-   console.log(listOfResults, 'filter')
+  // console.log(listOfResults, 'filter')
     switch(apiStatus){
       case apiStatusConstants.success:
         return <SuccessView listItems={listOfResults} handleAnyCheckboxClick = {handleAnyCheckboxClick}/>
@@ -154,14 +171,10 @@ export default function FilterAndSort(props) {
     }
   }
    
-  const handleAnyCheckboxClick = (status) => {
-      setCheckedStatus(status)
-      
-  }
+  
   return(
             <div className='container'> 
             <div>
-              <h4>{data.label}</h4>
               <FilterListIcon onClick = {handleOpen} sx={{color: "#626776"}}/>
              </div>
               <div>
@@ -170,17 +183,17 @@ export default function FilterAndSort(props) {
                     setOpen={setOpenDialog}
                     width={data.width} 
                     height={data.height}
-                    ArrowPosition={"80px"} anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+                    ArrowPosition={data.filterType === 'date' ?  '194px': "146px"} anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
                 >
                   <h1 className={classes.heading}>Filter by</h1>
                 {data.subFilterValues !== undefined ? <> <ul className='search-list-container'>{data.subFilterValues.map(each => <SearchField text={each.label} key = {each.label} width={each.width} handleSearchInputChange ={handleSearchInputChange}/>)} 
                   </ul> 
                   <p className='results'>{listOfResults.length} Results</p>
                    {renderAllViews()}
-                   </> : <SingleFilter filterType={data.filterType}/>}
+                   </> : <SingleFilter filterType={data.filterType} handleDateTimeSelected = {handleDateTimeSelected}/>}
                 <div className='button-container'>
                     <Button variant="text" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px",  textTransform: 'none', color: "#3874FF"}}>Cancel</Button>
-                    {(isChecked || data.filterType === 'date') ? <Button variant="contained" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px", height: '24px',   textTransform: 'none'}} onClick={handleSnackClick}>Apply
+                    {(isChecked || dateSlected) ? <Button variant="contained" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px", height: '24px',   textTransform: 'none'}} onClick={handleSnackClick}>Apply
                     </Button> : <Button variant="contained" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px", height: '24px',   textTransform: 'none', color: '#505767', background: "#242C40"}}>Apply
                     </Button>}
                 </div>

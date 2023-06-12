@@ -24,7 +24,6 @@ const AmPm=[
 const useStyles = makeStyles({
   datePicker:{
     background: '#050E25',
-
     width: '648px',
     height: '521px',
     padding: 0,
@@ -129,24 +128,36 @@ const useStyles = makeStyles({
             fontWeight: 400,
             fontSize: '12px',
             lineHeight: '16px',
-            width:'245px'
+            left: '8px'
         },
-        '& .MuiInput-root':{
-            fontFamily: 'Inter',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            fontSize: '12px',
-            lineHeight: '16px',
-            color: "#FFFFFF",
-            flex: 'none',
-        },
-        '& MuiTextField-root':{
-            width:'285px',
-
-        },
+        // '& .MuiInput-root':{
+        //     fontFamily: 'Inter',
+        //     fontStyle: 'normal',
+        //     fontWeight: 400,
+        //     fontSize: '12px',
+        //     lineHeight: '16px',
+        //     color: "#FFFFFF",
+        //     flex: 'none',
+        // },
         '& .css-1x51dt5-MuiInputBase-input-MuiInput-input':{
-          width: '245px'
+                  fontFamily: 'Inter',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  fontSize: '12px',
+                  lineHeight: '16px',
+                  color: '#FFFFFF',
+                  flex: 'none',
+                  order: 0,
+                  flexGrow: 1,
+                  width: '285px'
+        },
+        '& .MuiInput-underline:before': {
+          borderBottom: '1px solid #626776'
+        },
+        '& .MuiInput-underline:hover:not(.Mui-disabled):before':{
+          borderBottom: '2px solid #626776'
         }
+        
     },
     calenderIcon:{
         color: '#D9D9D9',
@@ -167,6 +178,7 @@ const useStyles = makeStyles({
       backgroundColor: '#050E25 !important',
       color: 'white !important',
       lineHeight: '32px',
+      fontSize: '12px',
       '&::-webkit-scrollbar': {
         width: '5px',
         height: "5px",
@@ -184,11 +196,29 @@ const useStyles = makeStyles({
       },
       '& .MuiInput-underline:hover:not(.Mui-disabled):before':{
         borderBottom: '2px solid #626776'
+      },
+      '& .css-1x51dt5-MuiInputBase-input-MuiInput-input':{
+        fontFamily: 'Inter',
+        fontStyle: 'normal',
+        fontWeight: 400,
+        fontSize: '12px',
+        lineHeight: '16px',
+        color: '#FFFFFF',
+        flex: 'none',
+        order: 0,
+        flexGrow: 1,
+        textAlign: 'cetner'
       }
+    },
+    options:{
+      fontSize: '12px',
+      fontWeight: 400,
+      fontFamily: 'Inter',
+      lineHeight: '16px',
     }
 })
   
-function MyRangePickerFooter({startDate,endDate,
+export function MyRangePickerFooter({startDate,endDate,
   startTime,endTime,setStartTime,setEndTime,
   time,setTime}) {
   function handleChange(event,time) {
@@ -218,7 +248,7 @@ function MyRangePickerFooter({startDate,endDate,
               <Autocomplete
                 disableClearable
                 className='auto'
-                classes = {{paper:classes.optionContainer}}
+                classes = {{paper:classes.optionContainer, option:classes.options}}
                 {...defaultProps}
                 id="Start-Hour"
                 options={hours}
@@ -241,7 +271,7 @@ function MyRangePickerFooter({startDate,endDate,
                 {...defaultProps}
                 className='auto'
                 id="Start-Minute"
-                classes = {{paper:classes.optionContainer}}
+                classes = {{paper:classes.optionContainer , option:classes.options}}
                 options={Minute}
                 value={startTime.min?startTime.min:null}
                 onChange={(event, newValue) => {
@@ -259,7 +289,7 @@ function MyRangePickerFooter({startDate,endDate,
                 {...defaultProps}
                 className='auto'
                 id="Start-Time"
-                classes = {{paper:classes.optionContainer}}
+                classes = {{paper:classes.optionContainer, option:classes.options}}
                 options={AmPm}
                 value={startTime.time?startTime.time:null}
                 onChange={(event, newValue) => {
@@ -267,7 +297,7 @@ function MyRangePickerFooter({startDate,endDate,
                   event.stopPropagation();
                 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="Am/Pm" variant="standard"  sx={{marginTop: '-15px'}}   className={classes.customTextField}/>
+                  <TextField {...params} label="Am/Pm" variant="standard"  sx={{fontSize: '12px',marginTop: '-15px'}}   className={classes.customTextField}/>
                 )}
               />
             </Grid>
@@ -283,7 +313,7 @@ function MyRangePickerFooter({startDate,endDate,
             {/* <TextField variant='standard' style={{width: "6rem"}} label="End Time" type="time" value={time.endTime} onChange={(e)=>{handleChange(e,"endTime")}} /> */}
              <Autocomplete
                disableClearable
-                className='auto'  classes = {{paper:classes.optionContainer}}
+                className='auto'  classes = {{paper:classes.optionContainer  , option:classes.options}}
                 {...defaultProps}
                 id="end-Hour"
                 options={hours}
@@ -300,7 +330,7 @@ function MyRangePickerFooter({startDate,endDate,
             <Grid item>
               <Autocomplete
                 disableClearable
-                {...defaultProps}   classes = {{paper:classes.optionContainer}}
+                {...defaultProps}   classes = {{paper:classes.optionContainer  , option:classes.options}}
                 className='auto'
                 id="end-Minute"
                 options={Minute}
@@ -318,7 +348,7 @@ function MyRangePickerFooter({startDate,endDate,
               <Autocomplete
                 disableClearable
                 {...defaultProps}
-                className='auto'   classes = {{paper:classes.optionContainer}}
+                className='auto'   classes = {{paper:classes.optionContainer  , option:classes.options}}
                 id="end-Time"
                 options={AmPm}
                 value={endTime.time?endTime.time:null}
@@ -396,20 +426,24 @@ const DateRangePicker = ({handleSelect,handleCancel}) => {
           onClick={()=>{
             handleCancel(selection,setSelection)
             ref.current.closeCalendar();}}>Cancel</Button>
-              <Button variant="contained" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px", height: '24px',   textTransform: 'none'}}
-              style={{float:"right"}} disabled={dates[1]?false:true} onClick={()=>{
+             {!dates[1] ? <Button variant="contained" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px", height: '24px',   textTransform: 'none', color: '#505767', background: "#242C40"}}
+              style={{float:"right"}}    
+              >Select
+                </Button> : <Button variant="contained" sx={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: "12px", lineHeinght: "16px", height: '24px',   textTransform: 'none'}}
+              style={{float:"right"}} 
+              onClick={()=>{
                 handleSelect(
                   startTime,endTime,
                   time,dates,selection,setSelection)
                 ref.current.closeCalendar();}}
               >Select
-                </Button>
+                </Button> }
           </div>
         </DatePicker>
     </div>
   );
 };
-const TextFieldWithDatePicker = () =>{
+const TextFieldWithDatePicker = ({handleDateTimeSelected}) =>{
   const classes = useStyles()
   const [value,setValue]=useState("")
   const [open,setOpen]=useState(false)
@@ -418,6 +452,7 @@ const TextFieldWithDatePicker = () =>{
     startTime,endTime,
     time,
     dates,selection,setSelection)=>{
+      handleDateTimeSelected(true)
     let Stime = startTime.h.value
     console.log(Stime)
     let stime=new Date()
